@@ -8,14 +8,8 @@ extern crate rust_captcha;
 use rustful::{Server, TreeRouter};
 use std::error::Error;
 use std::env;
-use widestring::U16String;
 
 use rust_captcha::requesthandler::{RequestHandler, CaptchaMethod};
-
-const PORT: u16 = match env::var_os("PORT") {
-    Some(port) => U16String::from_str(port),
-    None => 8080,
-};
 
 fn precondition_checks() -> bool {
     match env::var("REDIS_HOST") {
@@ -29,13 +23,14 @@ fn precondition_checks() -> bool {
 
 fn main() {
     env_logger::init();
+    let port: u16 = env::var("PORT").unwrap().parse::<u16>().unwrap();
 
     if !precondition_checks() {
         error!("Failed to start server.");
         return;
     }
 
-    info!("Starting service on port {} ...", PORT);
+    info!("Starting service on port {} ...", port);
 
     let ret = Server {
         handlers: insert_routes! {
@@ -44,7 +39,7 @@ fn main() {
                 "/solution/:id/:solution"          => Post: RequestHandler::new(CaptchaMethod::Solution)
             }
         },
-        host: PORT.into(),
+        host: port.into(),
         ..Server::default()
     }.run();
 
