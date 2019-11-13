@@ -11,7 +11,7 @@ use std::env;
 
 use rust_captcha::requesthandler::{RequestHandler, CaptchaMethod};
 
-const PORT: u16 = 8080;
+const PORT: u16 = env::var("PORT");
 
 fn precondition_checks() -> bool {
     match env::var("REDIS_HOST") {
