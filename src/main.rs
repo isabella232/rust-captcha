@@ -8,6 +8,7 @@ extern crate rust_captcha;
 use rustful::{Server, TreeRouter};
 use std::error::Error;
 use std::env;
+use widestring::U16String;
 
 use rust_captcha::requesthandler::{RequestHandler, CaptchaMethod};
 
