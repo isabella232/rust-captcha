@@ -23,7 +23,7 @@ fn precondition_checks() -> bool {
 
 fn main() {
     env_logger::init();
-    const port: u16 = 8080;//env::var("PORT").unwrap().parse::<u16>().unwrap();
+    let port: u16 = env::var("PORT").unwrap().parse::<u16>().unwrap();
 
     if !precondition_checks() {
         error!("Failed to start server.");
