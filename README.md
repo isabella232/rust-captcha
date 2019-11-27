@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/daniel-e/rust-captcha.svg?branch=master)](https://travis-ci.org/daniel-e/rust-captcha)
-
 # RESTful CAPTCHA Service
 
 A RESTful CAPTCHA service written in Rust. The service generates CAPTCHAs
@@ -32,7 +30,7 @@ Requires: [Rust](https://www.rust-lang.org) and a running [Redis](https://redis.
 export RUST_LOG=rust_captcha=info
 export REDIS_HOST=localhost
 
-git clone https://github.com/daniel-e/rust-captcha.git
+git clone https://github.com/rsksmart/rust-captcha.git
 cd rust-captcha
 cargo run --release
 ```
